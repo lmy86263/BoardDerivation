@@ -21,12 +21,12 @@ if __name__ == '__main__':
     X, y = generate_classification_examples()
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
     plt.scatter(X[:, 0], X[:, 1], marker='o', c=y, s=25, edgecolor='k')
-    x1_examples = np.linspace(np.min(X_test) - 0.05 * (np.max(X_test) - np.min(X_test)),
-                              np.max(X_test) + 0.05 * (np.max(X_test) - np.min(X_test)),
+    x1_examples = np.linspace(np.min(X) - 0.05 * (np.max(X) - np.min(X)),
+                              np.max(X) + 0.05 * (np.max(X) - np.min(X)),
                               100)
 
     logistic_sk = LogisticRegression_SK()
-    logistic_sk.fit(X_train, y_train)
+    logistic_sk.fit(X, y)
     sk_weights = logistic_sk.coef_.reshape(logistic_sk.n_features_in_, -1)
     x2_examples_SK = (sk_weights[0] * x1_examples) / sk_weights[1]
 
