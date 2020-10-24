@@ -1,8 +1,8 @@
 import numpy as np
-from ..LSE import lse
+from LSE.lse import LinearRegression
 
 
-class RidgeRegression(lse.LinearRegression):
+class RidgeRegression(LinearRegression):
     def __init__(self, alpha=1):
         super().__init__()
         self.alpha = alpha
