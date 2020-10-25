@@ -29,9 +29,6 @@ def plot_decision_regions(X, y, classifiers: list, test_idx=None, resolution=0.0
     xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution),
                            np.arange(x2_min, x2_max, resolution))
 
-    plt.xlim(xx1.min(), xx1.max())
-    plt.ylim(xx2.min(), xx2.max())
-
     f, axs = plt.subplots(1, 2, sharex='col', sharey='row', figsize=(10, 8))
 
     for idx, classifier, tt in zip([0, 1], classifiers, ['sklearn', 'self-handwritten']):
@@ -69,10 +66,10 @@ if __name__ == '__main__':
     X_test_std = sc.transform(X_test)
 
     pla_sk = Perceptron_SK(max_iter=1e5)
-    pla_sk.fit(X, y)
+    pla_sk.fit(X_train, y_train)
 
     pla = Perceptron()
-    pla.fit(X, y)
+    pla.fit(X_train, y_train)
 
     X_combined_std = np.vstack((X_train_std, X_test_std))
     y_combined_std = np.hstack((y_train, y_test))
