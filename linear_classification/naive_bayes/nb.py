@@ -44,8 +44,8 @@ class NaiveBayes:
                 example_prob = example_prob + feature_idx_log_prob
             likelihood.append(example_prob)
 
-        total_likliehood = np.array(likelihood).T
-        y_post = self.y_prior + total_likliehood
+        total_likelihood = np.array(likelihood).T
+        y_post = self.y_prior + total_likelihood
 
         y_index = np.argmax(y_post, axis=1)
         y_pred = self.y_class[y_index]
