@@ -2,11 +2,12 @@ import numpy as np
 
 
 class GibbsSampling:
-    def __init__(self):
+    def __init__(self, init_state):
+        self.init_state = init_state
         pass
 
     def sample(self, dimensions, condition_dist, n_samples=1000, burn_in=100, interval=3):
-        current_state = np.random.multivariate_normal(mean=[0, 0], cov=[[1, 0], [0, 1]])
+        current_state = self.init_state
         sampled_sequence = []
         for _ in range(interval * n_samples + burn_in):
             new_state = np.array([None]*dimensions)

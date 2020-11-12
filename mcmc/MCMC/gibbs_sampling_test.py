@@ -69,8 +69,8 @@ if __name__ == '__main__':
     # #                        linewidth=0, antialiased=False)
     # # fig.colorbar(surf, shrink=0.5, aspect=5)
     # ax.contourf(x, y, prob)
-
-    gibbs_sampler = GibbsSampling()
+    init_state = np.random.multivariate_normal(mean=[0, 0], cov=[[1, 0], [0, 1]])
+    gibbs_sampler = GibbsSampling(init_state=init_state)
     samples = gibbs_sampler.sample(dimensions=2, condition_dist=lambda x, y: target_condition_dist(x, mean, cov, y),
                                    n_samples=1000)
     x = samples[:, 0]
@@ -86,7 +86,6 @@ if __name__ == '__main__':
     # fig.colorbar(surf, shrink=0.5, aspect=5)
 
     # plt.scatter(x, y)
-    ax.stale = False
     ax.contourf(x, y, prob)
     plt.show()
 
